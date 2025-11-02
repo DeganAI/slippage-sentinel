@@ -661,6 +661,21 @@ async def entrypoint_slippage_get():
                 "payTo": payment_address,
                 "maxTimeoutSeconds": 30,
                 "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+                "outputSchema": {
+                    "input": {
+                        "type": "http",
+                        "method": "POST",
+                        "bodyType": "json",
+                        "bodyFields": {
+                            "token_in": {"type": "string", "required": True, "description": "Input token address"},
+                            "token_out": {"type": "string", "required": True, "description": "Output token address"},
+                            "amount_in": {"type": "string", "required": True, "description": "Amount to swap in wei"},
+                            "chain": {"type": "number", "required": True, "description": "Blockchain chain ID"},
+                            "route_hint": {"type": "string", "required": False, "description": "Optional DEX hint"}
+                        }
+                    },
+                    "output": {"type": "object", "description": "Safe slippage tolerance estimates"}
+                }
             }]
         }
     )
