@@ -131,6 +131,11 @@ async def root():
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Slippage Sentinel</title>
+        <meta name="description" content="Safe slippage estimation for any swap route via x402 micropayments">
+        <meta property="og:title" content="Slippage Sentinel">
+        <meta property="og:description" content="Safe slippage estimation for any swap route via x402 micropayments">
+        <meta property="og:image" content="https://slippage-sentinel-production.up.railway.app/favicon.ico">
+        <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>">
         <style>
             * {{ margin: 0; padding: 0; box-sizing: border-box; }}
             body {{
@@ -531,6 +536,14 @@ async def x402_metadata():
     }
 
     return JSONResponse(content=metadata, status_code=402)
+
+
+@app.get("/favicon.ico")
+async def favicon():
+    """Favicon endpoint"""
+    from fastapi.responses import Response
+    svg_content = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🎯</text></svg>'
+    return Response(content=svg_content, media_type="image/svg+xml")
 
 
 # Health Check
